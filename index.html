@@ -1,0 +1,798 @@
+<!DOCTYPE html><html lang="es"><head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Recharge TikTok Coins</title>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 0px 10px 10px 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border: 10px solid #fbfbfb;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            border-bottom: 8px solid #ededed;
+            padding: 10px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .user-coins {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            margin-left: 15px;
+            color: #9d9d9d !important;
+        }
+
+        .coin-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        h1 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
+        .titulo {
+            display: flex;
+            align-items: center;     /* Centra verticalmente */
+            border-bottom: 1px solid #ededed;
+        }
+
+        .promo-text {
+            color: #ff4d4f;
+            font-size: 14px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .coin-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .coin-option {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .coin-option.selected {
+            background-color: #ffe8e8;
+            border-color: #ff4d4f;
+        }
+
+        .coin-amount {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .coin-price {
+            color: #666;
+            font-size: 0.7em;
+        }
+
+        .limited-offer {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .limited-offer img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .buy-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #fe2b54;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .payment-methods {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .payment-methods img {
+            height: 15px;
+            margin: 0 5px;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .popup-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 0;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 430px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .payment-method-content{
+            max-width: 390px;
+        }
+
+        .popup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .popup-title {
+            font-size: 18px;
+            font-weight: bold;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .close {
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+            background: none;
+            border: none;
+            padding: 0 10px;
+        }
+
+        .custom-amount-display {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            width: 82%;
+            margin-left:20px;
+        }
+
+        .coin-icon-custom {
+            width: 32px; /* Ancho de la imagen */
+            height: 32px; /* Alto de la imagen */
+            background-image: url('images/moneda2.png'); /* Ruta de tu imagen */
+            background-size: contain; /* Ajusta la imagen para que se contenga dentro del div */
+            background-repeat: no-repeat; /* Evita que la imagen se repita */
+            display: inline-block; /* Asegura que el div se comporte como un bloque en línea */
+        }
+
+
+        #customAmountDisplay {
+            flex-grow: 1;
+            font-size: 24px;
+            text-align: left;
+            border: none;
+            background: transparent;
+            outline: none;
+        }
+
+        .subtitulo{
+            font-size: 16px;
+            font-weight: bold;
+            padding: 15px;
+        }
+
+        .usd-amount {
+            display:flex;
+            padding: 0px 15px;
+            color: black;
+            font-size: 16px;
+            border-bottom: 1px solid #e0e0e0;
+            font-weight: bold;
+        }
+
+        #usdAmount{
+            margin-left:30px;
+            font-size: 14px;
+            color:#595959;
+            font-weight: normal;
+            margin-top: 10px;
+        }
+
+        .calculator {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 10px 0px;
+            background-color: #ffffff;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .calculator button {
+            padding: 15px;
+            font-size: 20px;
+            border: none;
+            background-color: #e5e5e5;
+            cursor: pointer;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Pequeña sombra para resaltarlo */
+            border-radius: 5px; /* Redondear los bordes de los botones */
+            width: 100%;
+        }
+ 
+        .calculator button:active {
+            background-color: #f0f0f0;
+        }
+
+        .confirm-button {
+            width: 80%;
+            padding: 15px;
+            background-color: #fe2c55;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto ;
+            border-radius:5px;
+        }
+
+        #paymentMethodPopup .popup-content {
+            padding: 20px;
+            width: 80%;
+        }
+
+        .payment-method {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+            cursor: pointer;
+        }
+
+        .payment-icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 15px;
+        }
+
+        .payment-name {
+            flex-grow: 1;
+            font-size: 16px;
+        }
+
+        .payment-radio {
+            width: 15px;
+            height: 15px;
+            margin-left: 10px;
+        }
+
+
+        .secure-payment {
+            background-color: #e8f5e9;
+            color: #00916d;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .order-summary {
+            margin-bottom: 15px;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .order-total {
+            font-weight: bold;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .terms {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        
+        /* Estilos actualizados para el popup de confirmación */
+        #confirmationPopup .popup-content {
+            text-align: center;
+            padding: 20px;
+            width: 350px;
+        }
+
+        .confirmation-icon {
+            font-size: 48px;
+            color: #4caf50;
+            margin-bottom: 20px;
+        }
+
+        .confirmation-message {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        /* Estilos para la animación de carga */
+       .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+         /* Nuevos estilos para el campo de nombre de usuario */
+        .input-container {
+            margin-bottom: 20px;
+        }
+
+        .input-wrapper {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: #f8f8f8;
+        }
+
+        .input-icon {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        .input-text {
+            border: none;
+            background: transparent;
+            flex-grow: 1;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .inline-coin-icon {
+            width: 21px; /* Aumenta el tamaño de la moneda */
+            height: 21px;
+            vertical-align: -4px; /* Alinea la imagen verticalmente con el número */
+            margin-right: 2px; /* Añade un pequeño margen a la derecha para que no quede pegado al número */
+        }
+
+        .icon-img {
+            width: 24px;  /* Tamaño de la imagen */
+            height: 24px; /* Alto de la imagen */
+            vertical-align: middle; /* Alineación vertical */
+        }
+
+       #total {
+            width: 50%;
+        }
+
+        #saldo{
+            width: 50%;
+            text-align:right;
+        }
+        img.icono-imagen {
+            margin-right: 8px; /* Ajusta el espacio entre la imagen y el texto */
+            width: 20px; /* Cambia el tamaño según sea necesario */
+            height: auto;
+            vertical-align: middle;
+        }
+
+        .cabeza {
+            display: flex; /* Activa el modelo flexbox */
+            align-items: center; /* Centra el contenido verticalmente */
+            justify-content: center; /* Centra el contenido horizontalmente */
+            position: relative; /* Para posicionar el texto sobre la imagen */
+            background-image: url('cabeza.png'); /* Cambia a la ruta de tu imagen */
+            background-size: cover; /* Hace que la imagen cubra todo el contenedor */
+            background-position: center; /* Centra la imagen */
+            padding: 12px; /* Espacio interno alrededor del texto */
+            color: #00916d; /* Color del texto */
+            font-size: 15px; /* Tamaño de fuente */
+            height: 5px; /* Establece la altura del contenedor */
+            font-weight: bold;
+        }
+
+        #rechargeName{
+            font-weight: bold;
+        }
+        #rechargeAmount{
+            font-weight: bold;
+        }
+
+    </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="cabeza">
+                <span>Secure payment</span>
+            </div>
+            <div class="header">
+                <div class="user-info">
+                    <img src="images/maj.jpg" alt="User Avatar"
+                        class="user-avatar">
+                    <span>Aladdin</span>
+                </div>
+                <div class="user-coins">
+                    <img src="images/moneda2.png" alt="Coin" class="coin-icon">
+                    <span>9999999999</span>
+                </div>
+            </div>
+            <div class="titulo">
+                <h1>Recharge</h1>
+            </div>
+
+            <p class="promo-text">save up to 31% compared to in-app
+                purchase.</p>
+            <div class="coin-options">
+                <div class="coin-option" onclick="selectAmount(70, 0.74)">
+                    <div class="coin-amount"><img src="images/moneda2.png"
+                            class="inline-coin-icon" alt="Coin">70</div>
+                    <div class="coin-price">US$ 0.74</div>
+                </div>
+                <div class="coin-option" onclick="selectAmount(450, 4.77)">
+                    <div class="coin-amount"><img src="images/moneda2.png"
+                            class="inline-coin-icon" alt="Coin">450</div>
+                    <div class="coin-price">US$ 4.77</div>
+                </div>
+                <div class="coin-option" onclick="selectAmount(550, 5.83)">
+                    <div class="coin-amount"><img src="images/moneda2.png"
+                            class="inline-coin-icon" alt="Coin">550</div>
+                    <div class="coin-price">US$ 5.83</div>
+                </div>
+                <div class="coin-option" onclick="selectAmount(750, 7.95)">
+                    <div class="coin-amount"><img src="images/moneda2.png"
+                            class="inline-coin-icon" alt="Coin">750</div>
+                    <div class="coin-price">US$ 7.95</div>
+                </div>
+                <div class="coin-option" onclick="selectAmount(1000, 10.60)">
+                    <div class="coin-amount"><img src="images/moneda2.png"
+                            class="inline-coin-icon" alt="Coin">1,000</div>
+                    <div class="coin-price">US$ 10.60</div>
+                </div>
+                <div class="coin-option" onclick="selectAmount(2000, 21.20)">
+                    <div class="coin-amount"><img src="images/moneda2.png"
+                            class="inline-coin-icon" alt="Coin">2,000</div>
+                    <div class="coin-price">US$ 21.20</div>
+                </div>
+                <div class="coin-option" onclick="selectAmount(2500, 26.50)">
+                    <div class="coin-amount"><img src="images/moneda2.png"
+                            class="inline-coin-icon" alt="Coin">2,500</div>
+                    <div class="coin-price">US$ 26.50</div>
+                </div>
+                <div class="coin-option" onclick="openCustomAmountPopup()">
+                    <div>
+                        <img src="images/moneda2.png" class="inline-coin-icon"
+                            alt="Coin">Custom
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-container">
+                <div class="input-wrapper">
+                    <span class="input-icon"> <img src="images/user1.png"
+                            class="icon-img"></span>
+                    <input type="text" id="username" class="input-text"
+                        placeholder="Your Username">
+                </div>
+            </div>
+
+            <div class="limited-offer">
+                <img src="images/moneda2.png" alt="Offer Icon">
+                <span>Limited time cashback offer</span>
+            </div>
+            <button class="buy-button" onclick="openPaymentMethodPopup()">
+                <img src="images/logo.png" alt="Icono" class="icono-imagen">Pay
+                now US$ 0.74</button>
+            <div class="payment-methods">
+                <img src="images/visa.png" alt="Visa">
+                <img src="images/Mastercard.png" alt="Mastercard">
+                <img src="images/america.png" alt="America">
+                <img src="images/jcb.png" alt="JCB">
+                <img src="images/diners.png" alt="Diners">
+                <img src="images/Maestro.png" alt="UnionPay">
+                <img src="images/paypal.png" alt="PayPal">
+            </div>
+        </div>
+
+        <div id="customAmountPopup" class="popup">
+            <div class="popup-content">
+                <div class="popup-header">
+                    <button class="close"
+                        onclick="closePopup('customAmountPopup')"><</button>
+                    <span class="popup-title">Personalized</span>
+                    <button class="close">?</button>
+                </div>
+                <div class="subtitulo">Number of coins</div>
+                <div class="custom-amount-display">
+                    <div class="coin-icon-custom"></div>
+                    <input type="text" id="customAmountDisplay"
+                        placeholder="0.00" readonly>
+                </div>
+                <div class="usd-amount" id="usdAmount">US$ 0.00</div>
+                <div class="calculator">
+                    <button onclick="addToCustomAmount(1)">1</button>
+                    <button onclick="addToCustomAmount(2)">2</button>
+                    <button onclick="addToCustomAmount(3)">3</button>
+                    <button onclick="deleteLastDigit()">
+                        <img src="images/borrar.png" alt="Eliminar"
+                            style="width: 20px; height: 20px;"></button>
+                    <button onclick="addToCustomAmount(5)">5</button>
+                    <button onclick="addToCustomAmount(6)">6</button>
+                    <button onclick="addToCustomAmount(7)">7</button>
+                    <button onclick="addToCustomAmount('000')">000</button>
+                    <button onclick="addToCustomAmount(9)">9</button>
+                    <button onclick="addToCustomAmount(8)">8</button>
+                    <button onclick="addToCustomAmount(0)">0</button>
+                    <button onclick="addToCustomAmount(4)">4</button>
+                </div>
+                <div class="usd-amount" id="usdAmount1">
+                    <div id="total">Total</div>
+                    <div id="saldo">US $0.00</div>
+                </div>
+                <button onclick="setCustomAmount()" class="confirm-button">
+                    <img src="images/logo.png" alt="Icono"
+                        class="icono-imagen">Recharge
+                </button>
+            </div>
+        </div>
+
+        <div id="paymentMethodPopup" class="popup">
+            <div class="popup-content payment-method-content">
+                <div class="popup-header">
+                    <button class="close"
+                        onclick="closePopup('paymentMethodPopup')"><</button>
+                    <span class="popup-title">Order Summary</span>
+                    <button class="close">?</button>
+                </div>
+                <div class="secure-payment">
+                    <span><img src="images/logo1.png" alt="Icono"
+                            class="icono-imagen"> Secure payment</span>
+                </div>
+                <div class="order-summary">
+                    <div class="order-item">
+                        <span>Account</span>
+                        <span>jota_hm99</span>
+                    </div>
+                    <div class="order-item">
+                        <span id="coinAmount">100 Coins</span>
+                        <span id="coinPrice">US$ 1.06</span>
+                    </div>
+                </div>
+                <div class="payment-methods-list">
+                    <div class="payment-method"
+                        onclick="selectPaymentMethod('card')">
+                        <img src="images/visa1.png" alt="Tarjeta"
+                            class="payment-icon">
+                        <span class="payment-name">************3325</span>
+                        <span class="chevron">›</span>
+                    </div>
+                    <div class="payment-method"
+                        onclick="selectPaymentMethod('paypal')">
+                        <img src="images/paypal.png" alt="PayPal"
+                            class="payment-icon">
+                        <span class="payment-name">PayPal</span>
+                        <input type="radio" class="payment-radio" name="payment"
+                            value="paypal">
+                        <label for="paypal" class="custom-checkmark"></label>
+                    </div>
+                </div>
+                <div class="terms">
+                    By clicking Pay Now, you agree to the Coin Purchasing Terms.
+                    By using any amount of Coins, you agree to the Coins Terms.
+                </div>
+                <div class="order-summary">
+                    <div class="order-item order-total">
+                        <span>Total</span>
+                        <span id="totalPrice">US$1.06</span>
+                    </div>
+                </div>
+                <button onclick="completePurchase()" class="confirm-button">
+                    <img src="images/logo.png" alt="Icono"
+                        class="icono-imagen">Recharge
+                </button>
+            </div>
+        </div>
+
+        <!-- Updated confirmation popup -->
+        <div id="confirmationPopup" class="popup">
+            <div class="popup-content">
+                <div id="loader" class="loader"></div>
+                <div id="successIcon" class="confirmation-icon hidden">✓</div>
+                <div class="confirmation-message">Processing recharge...</div>
+                <div id="rechargeDetails" class="hidden">
+                    <p><span id="rechargeAmount"></span> Coins were sent to
+                        <span id="rechargeName"></span>.</p>
+                    <h5>This operation has been completed. <br>It will be
+                        processed within 24 hours!</h5>
+                </div>
+                <button onclick="closePopup('confirmationPopup')"
+                    class="confirm-button hidden"
+                    id="confirmButton">Accept</button>
+            </div>
+        </div>
+
+        <script>
+       let selectedAmount = 70;
+        let selectedPrice = 0.74;
+
+        function selectAmount(amount, price) {
+            selectedAmount = amount;
+            selectedPrice = price;
+            document.querySelector('.buy-button').textContent = `Pay now US$ ${price.toFixed(2)}`;
+            document.querySelectorAll('.coin-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+            updateOrderSummary(); // Actualizar el resumen del pedido
+        }
+
+        function openCustomAmountPopup() {
+            document.getElementById('customAmountPopup').style.display = 'block';
+            resetCustomAmount(); // Resetear el monto personalizado al abrir el popup
+        }
+
+        function resetCustomAmount() {
+            document.getElementById('customAmountDisplay').value = '';
+            document.getElementById('usdAmount').textContent = 'US$ 0.00';
+            document.getElementById('saldo').textContent = 'US$ 0.00';
+        }
+
+        function addToCustomAmount(value) {
+            let display = document.getElementById('customAmountDisplay');
+            let currentValue = display.value.replace(/,/g, '');
+            if (currentValue === '0' && value !== '000') {
+                currentValue = '';
+            }
+            currentValue += value;
+            let numericValue = parseInt(currentValue);
+            display.value = numericValue.toLocaleString('en-US');
+            updateUsdAmount(numericValue);
+        }
+
+        function deleteLastDigit() {
+            let display = document.getElementById('customAmountDisplay');
+            let currentValue = display.value.replace(/,/g, '');
+            if (currentValue.length > 1) {
+                currentValue = currentValue.slice(0, -1);
+            } else {
+                currentValue = '0';
+            }
+            let numericValue = parseInt(currentValue);
+            display.value = numericValue.toLocaleString('en-US');
+            updateUsdAmount(numericValue);
+        }
+
+        function updateUsdAmount(coins) {
+            let usdAmount = (coins * 0.0106).toFixed(2);
+            document.getElementById('usdAmount').textContent = `US$ ${usdAmount}`;
+            document.getElementById('usdAmount1').innerHTML = `<div id="total">Total</div> <div id="saldo">US$ ${usdAmount}</div>`;
+        }
+
+        function setCustomAmount() {
+            const amount = parseInt(document.getElementById('customAmountDisplay').value.replace(/,/g, ''));
+            const price = (amount * 0.0106).toFixed(2);
+            selectAmount(amount, parseFloat(price));
+            closePopup('customAmountPopup');
+            openPaymentMethodPopup();
+        }
+
+        function openPaymentMethodPopup() {
+            document.getElementById('paymentMethodPopup').style.display = 'block';
+            updateOrderSummary(); // Actualizar el resumen del pedido al abrir el popup
+        }
+
+        // Agregar esta nueva función para actualizar el resumen del pedido
+        function updateOrderSummary() {
+            const username = document.getElementById('username').value || 'jota_hm99';
+            document.querySelector('.order-item:first-child span:last-child').textContent = username;
+            document.getElementById('coinAmount').textContent = `${selectedAmount} Coins`;
+            document.getElementById('coinPrice').textContent = `US$ ${selectedPrice.toFixed(2)}`;
+            document.getElementById('totalPrice').textContent = `US$ ${selectedPrice.toFixed(2)}`;
+        }
+
+        function clearUsername() {
+            document.getElementById('username').value = '';
+        }
+
+        function closePopup(popupId) {
+            document.getElementById(popupId).style.display = 'none';
+            if (popupId === 'confirmationPopup') {
+                clearUsername();
+                updateOrderSummary(); // Actualiza el resumen del pedido para reflejar el cambio
+            }
+        }
+
+        function completePurchase() {
+            closePopup('paymentMethodPopup');
+            openConfirmationPopup();
+            
+            // Reiniciar la animación cada vez
+            document.getElementById('loader').classList.remove('hidden');
+            document.getElementById('successIcon').classList.add('hidden');
+            document.querySelector('#confirmationPopup .confirmation-message').textContent = 'Processing recharge...';
+            document.getElementById('confirmButton').classList.add('hidden');
+            document.getElementById('rechargeDetails').classList.add('hidden');
+            
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+                document.getElementById('successIcon').classList.remove('hidden');
+                document.querySelector('#confirmationPopup .confirmation-message').textContent = '¡Successful recharge!';
+                document.getElementById('confirmButton').classList.remove('hidden');
+                
+                // Mostrar detalles de la recarga
+                const username = document.getElementById('username').value || 'Usuario';
+                document.getElementById('rechargeAmount').textContent = selectedAmount;
+                document.getElementById('rechargeName').textContent = username;
+                document.getElementById('rechargeDetails').classList.remove('hidden');
+            }, 2000);
+        }
+
+        function openConfirmationPopup() {
+            document.getElementById('confirmationPopup').style.display = 'block';
+        }
+
+        // Agregar un event listener para actualizar el nombre de usuario cuando cambie
+        document.getElementById('username').addEventListener('input', updateOrderSummary);
+    </script>
+
+    </body></html>
